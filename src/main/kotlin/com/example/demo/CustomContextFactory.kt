@@ -14,6 +14,11 @@ class CustomContextFactory: GraphQLContextFactory<CustomContext, ServerHttpReque
         val language = request.headers.acceptLanguage.firstOrNull()?.range ?: "en-us"
         return CustomContext(language = language)
     }
+
+    override suspend fun generateContextMap(request: ServerHttpRequest): Map<*, Any>? {
+        val language = request.headers.acceptLanguage.firstOrNull()?.range ?: "en-us"
+        return mapOf("language" to language)
+    }
 }
 
 class CustomContext(val language: String) : GraphQLContext

@@ -2,6 +2,7 @@ package com.example.demo
 
 import com.expediagroup.graphql.generator.annotations.GraphQLDescription
 import com.expediagroup.graphql.server.operations.Query
+import graphql.schema.DataFetchingEnvironment
 import kotlinx.coroutines.delay
 import org.springframework.stereotype.Component
 
@@ -21,7 +22,7 @@ class ConferenceQuery : Query {
 
 class ScheduleDetails {
 
-    fun greeting(context: CustomContext) = if (context.language.equals("pl-pl", true)) {
+    fun greeting(dfe: DataFetchingEnvironment) = if (dfe.graphQlContext.get<String>("language").equals("pl-pl", true)) {
         "Witajcie"
     } else {
         "Welcome to GOTO Chicago!"
