@@ -22,10 +22,8 @@ class ConferenceQuery : Query {
 
 class ScheduleDetails {
 
-    fun greeting(dfe: DataFetchingEnvironment) = if (dfe.graphQlContext.get<String>("language").equals("pl-pl", true)) {
-        "Witajcie"
-    } else {
-        "Welcome to GOTO Chicago!"
+    fun greeting():String{
+        return "Welcome to GOTO Chicago!"
     }
 
     suspend fun talks(): List<String> {
